@@ -8,9 +8,9 @@ const Hero = () => {
     <div className="">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          <div className="flex flex-col justify-center order-2 sm:order-1">
+          <div className="flex flex-col justify-center order-2 sm:order-1 text-center sm:text-left">
             <div className="flex flex-col">
-              <div>
+              <div className="hidden sm:block">
                 <Image
                   src="/images/drops.png"
                   width={80}
@@ -31,7 +31,7 @@ const Hero = () => {
                 আপনার রক্ত বাঁচাতে পারে আরেকজনের প্রাণ
               </p>
 
-              <div className="flex flex-wrap gap-5 mt-3">
+              <div className="flex flex-wrap gap-5 mt-3 justify-center sm:justify-start">
                 <Link href="/register" passHref>
                   <a className="px-4 py-2 bg-red-600 text-white rounded-md">
                     রক্ত দান করুন
