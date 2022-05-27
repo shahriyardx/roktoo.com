@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const Header = () => {
   const router = useRouter();
   return (
-    <div className="h-16 flex items-center">
+    <div className="h-16 flex items-center shadow-md">
       <Container className="flex items-center">
         <Link href="/" passHref>
           <a>
