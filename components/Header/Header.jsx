@@ -22,6 +22,7 @@ const Header = () => {
         </Link>
 
         <div className="flex gap-3 ml-auto">
+          <NavLink href="/search" text="Search" />
           <NavLink href="/login" text="Login" />
           <NavLink href="/register" text="Register" />
         </div>

@@ -38,7 +38,7 @@ const Hero = () => {
                   </a>
                 </Link>
 
-                <Link href="/register" passHref>
+                <Link href="/search" passHref>
                   <a className="px-4 py-2 bg-zinc-600 text-white rounded-md">
                     রক্ত খুজুন
                   </a>

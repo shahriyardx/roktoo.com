@@ -166,10 +166,10 @@ const Register = () => {
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="blood">Area</label>
+              <label htmlFor="area">Area</label>
               <select
-                name="district"
-                id="district"
+                name="area"
+                id="area"
                 onChange={(e) => setArea(e.target.value)}
               >
                 <option value="">Select Area</option>
