@@ -9,7 +9,7 @@ const HowItWorks = () => {
           How it works?
         </h1>
 
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 rounded-xl overflow-hidden">
           <div className="p-5 bg-red-400 text-white">
             <h1 className="text-xl font-semibold">
               Register and become a donor

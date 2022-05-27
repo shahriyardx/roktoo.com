@@ -54,17 +54,18 @@ const Header = () => {
           )}
 
           {status === "authenticated" && (
-            <>
-              <NavLink href="/profile" text="Profile" />
-              <button
-                onClick={signOut}
-                className="text-red-600 font-bold sm:hover:text-red-500 py-3 px-4 sm:px-0 sm:py-0"
-              >
-                Logout
-              </button>
-            </>
+            <NavLink href="/profile" text="Profile" />
           )}
         </div>
+
+        {status === "authenticated" && (
+          <button
+            onClick={signOut}
+            className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-3 sm:ml-5"
+          >
+            Logout
+          </button>
+        )}
       </Container>
     </div>
   );
