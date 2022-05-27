@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import Page from "../components/Page";
 import cities from "../data/cities";
 import Link from "next/link";
+import { API_BASE } from "../constrains";
+import toast from "react-hot-toast";
+import { BiLoaderAlt } from "react-icons/bi";
 
 const Register = () => {
   const [district, setDistrict] = useState();
   const [area, setArea] = useState();
   const [areas, setAreas] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Errors
   const [disError, setDisError] = useState("");
@@ -20,7 +24,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegister = (data) => {
+  const handleRegister = async (data) => {
     const { phone, ...otherInfo } = data;
     const matchedPhone = phone.match(PHONE_REGEX)[1];
     const registerInfo = { ...otherInfo, phone: matchedPhone, district, area };
@@ -29,7 +33,22 @@ const Register = () => {
     area ? setAreaError("") : setAreaError("Please choose area");
 
     if (!district || !area) return;
-    console.log(registerInfo);
+
+    setLoading(true);
+    const response = await fetch(`${API_BASE}/user/register`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(registerInfo),
+    }).then((data) => data.json());
+
+    setLoading(false);
+    if (response.error) {
+      toast.error(response.error);
+    } else {
+      toast.success("Registration successfull");
+    }
   };
 
   useEffect(() => {
@@ -185,15 +204,15 @@ const Register = () => {
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="location" className="text-lg">
+              <label htmlFor="address" className="text-lg">
                 Full Address <span className="text-zinc-400">(optional)</span>
               </label>
               <input
                 type="text"
-                name="location"
-                id="location"
+                name="address"
+                id="address"
                 placeholder="Full Address"
-                {...register("location")}
+                {...register("address")}
               />
             </div>
 
@@ -228,10 +247,12 @@ const Register = () => {
 
           <div className="mt-5">
             <button
+              disabled={loading}
               type="submit"
-              className="px-10 py-3 rounded-md bg-green-500 text-white"
+              className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 items-center disabled:bg-green-800 disabled:cursor-not-allowed"
             >
-              Register
+              {loading && <BiLoaderAlt className="text-xl animate-spin" />}
+              <span>Register</span>
             </button>
           </div>
         </form>
