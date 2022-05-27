@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Page from "../components/Page";
 import cities from "../data/cities";
+import Link from "next/link";
 
 const Register = () => {
   const [district, setDistrict] = useState();
@@ -195,6 +196,13 @@ const Register = () => {
             </button>
           </div>
         </form>
+        <div className="mt-10">
+          <Link href="/login" passHref>
+            <a className="text-blue-500 font-semibold">
+              💘 Already have an account? Login here
+            </a>
+          </Link>
+        </div>
       </div>
     </Page>
   );

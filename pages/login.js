@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Page from "../components/Page";
+import Link from "next/link";
 
 const Login = () => {
   const PHONE_REGEX = /^(?:\+88|88)?(01[3-9]\d{8})$/;
@@ -76,6 +77,18 @@ const Login = () => {
               </p>
             </div>
 
+            <div className="flex items-center gap-1">
+              <input type="checkbox" id="agree" {...register("agree")} />
+              <label htmlFor="agree">
+                <span>I agree to the</span>
+                <Link href="/terms" passHref>
+                  <a className="text-blue-500 font-bold">
+                    &nbsp;Terms and Conditions
+                  </a>
+                </Link>
+              </label>
+            </div>
+
             <div>
               <button
                 type="submit"
@@ -86,6 +99,14 @@ const Login = () => {
             </div>
           </div>
         </form>
+
+        <div className="mt-10">
+          <Link href="/register" passHref>
+            <a className="text-blue-500 font-semibold">
+              💘 New to roktoo? Register here
+            </a>
+          </Link>
+        </div>
       </div>
     </Page>
   );
