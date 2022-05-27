@@ -1,7 +1,5 @@
+import Page from "../components/Page";
+
 export default function Home() {
-  return (
-    <div>
-      <h1 className="text-2xl">Hello World</h1>
-    </div>
-  );
+  return <Page></Page>;
 }
