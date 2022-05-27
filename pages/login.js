@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BiLoaderAlt } from "react-icons/bi";
 import { API_BASE } from "../constrains";
 import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -18,22 +19,27 @@ const Login = () => {
   const handleLogin = async (data) => {
     const { phone, password } = data;
     const matchedPhone = phone.match(PHONE_REGEX)[1];
-    const loginInfo = { phone: matchedPhone, password };
 
-    const response = await fetch(`${API_BASE}/user/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(loginInfo),
-    }).then((data) => data.json());
+    signIn("credentials", {
+      phone: matchedPhone,
+      password,
+      callbackUrl: `${window.location.origin}/`,
+    });
 
-    console.log(response);
-    if (response.error) {
-      toast.error(response.error);
-    } else {
-      toast.success("Login successfull");
-    }
+    // const response = await fetch(`${API_BASE}/user/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginInfo),
+    // }).then((data) => data.json());
+
+    // console.log(response);
+    // if (response.error) {
+    //   toast.error(response.error);
+    // } else {
+    //   toast.success("Login successfull");
+    // }
   };
   return (
     <Page>
