@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="">
+    <div className="py-10">
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           <div className="flex flex-col justify-center order-2 sm:order-1 text-center sm:text-left">
