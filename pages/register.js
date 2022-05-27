@@ -197,16 +197,32 @@ const Register = () => {
               />
             </div>
 
-            <div className="flex items-center gap-1">
-              <input type="checkbox" id="agree" {...register("agree")} />
-              <label htmlFor="agree">
-                <span>I agree to the</span>
-                <Link href="/terms" passHref>
-                  <a className="text-blue-500 font-bold">
-                    &nbsp;Terms and Conditions
-                  </a>
-                </Link>
-              </label>
+            <div>
+              <div className="flex items-center gap-1">
+                <input
+                  type="checkbox"
+                  id="agree"
+                  {...register("agree", {
+                    required: {
+                      value: true,
+                      message: "You must agree to terms and conditions",
+                    },
+                  })}
+                />
+                <label htmlFor="agree">
+                  <span>I agree to the</span>
+                  <Link href="/terms" passHref>
+                    <a className="text-blue-500 font-bold">
+                      &nbsp;Terms and Conditions
+                    </a>
+                  </Link>
+                </label>
+              </div>
+              <div>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.agree?.message}
+                </p>
+              </div>
             </div>
           </div>
 
