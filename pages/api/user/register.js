@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const { UserModel, UserSchemma } = require("../../../database/schema/User");
 
 export default async function handler(req, res) {
@@ -19,15 +19,8 @@ export default async function handler(req, res) {
     return res.json({ error: "This phone number is already registered" });
   }
 
-  const password_hash = crypto
-    .pbkdf2Sync(
-      password,
-      crypto.randomBytes(16).toString("hex"),
-      1000,
-      64,
-      `sha512`
-    )
-    .toString(`hex`);
+  const salt = await bcrypt.genSalt();
+  const password_hash = await bcrypt.hash(password, salt);
 
   try {
     await UserModel.create({ ...value, password_hash });

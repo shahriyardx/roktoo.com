@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Page from "../components/Page";
 import Link from "next/link";
+import { BiLoaderAlt } from "react-icons/bi";
+import { API_BASE } from "../constrains";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const PHONE_REGEX = /^(?:\+88|88)?(01[3-9]\d{8})$/;
   const {
     register,
@@ -11,12 +15,25 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const handleLogin = (data) => {
+  const handleLogin = async (data) => {
     const { phone, password } = data;
     const matchedPhone = phone.match(PHONE_REGEX)[1];
     const loginInfo = { phone: matchedPhone, password };
 
-    console.log(loginInfo);
+    const response = await fetch(`${API_BASE}/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(loginInfo),
+    }).then((data) => data.json());
+
+    console.log(response);
+    if (response.error) {
+      toast.error(response.error);
+    } else {
+      toast.success("Login successfull");
+    }
   };
   return (
     <Page>
@@ -79,10 +96,12 @@ const Login = () => {
 
             <div>
               <button
+                disabled={loading}
                 type="submit"
-                className="px-10 py-3 rounded-md bg-green-500 text-white"
+                className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 items-center disabled:bg-green-800 disabled:cursor-not-allowed"
               >
-                Login
+                {loading && <BiLoaderAlt className="text-xl animate-spin" />}
+                <span>Login</span>
               </button>
             </div>
           </div>
