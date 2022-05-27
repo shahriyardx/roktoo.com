@@ -18,29 +18,22 @@ const Hero = () => {
                   alt="Blood drops"
                 />
               </div>
-              <div>
-                <Image
-                  src="/images/roktoo.png"
-                  width={120}
-                  height={70}
-                  alt="Roktoo"
-                />
-              </div>
+              <h1 className="text-6xl font-black text-red-500">Roktoo</h1>
 
               <p className="text-2xl mt-5">
-                আপনার রক্ত বাঁচাতে পারে আরেকজনের প্রাণ
+                Your blood can save someone&apos;s life
               </p>
 
               <div className="flex flex-wrap gap-5 mt-3 justify-center sm:justify-start">
                 <Link href="/register" passHref>
                   <a className="px-4 py-2 bg-red-600 text-white rounded-md">
-                    রক্ত দান করুন
+                    Donate Blood
                   </a>
                 </Link>
 
                 <Link href="/search" passHref>
                   <a className="px-4 py-2 bg-zinc-600 text-white rounded-md">
-                    রক্ত খুজুন
+                    Find Blood
                   </a>
                 </Link>
               </div>
