@@ -183,9 +183,32 @@ const Register = () => {
               </select>
               <p className=" mt-1 text-sm text-red-500">{areaError}</p>
             </div>
-          </div>
 
-          <div className="flex flex-col gap-5"></div>
+            <div className="flex flex-col">
+              <label htmlFor="location" className="text-lg">
+                Full Address <span className="text-zinc-400">(optional)</span>
+              </label>
+              <input
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Full Address"
+                {...register("location")}
+              />
+            </div>
+
+            <div className="flex items-center gap-1">
+              <input type="checkbox" id="agree" {...register("agree")} />
+              <label htmlFor="agree">
+                <span>I agree to the</span>
+                <Link href="/terms" passHref>
+                  <a className="text-blue-500 font-bold">
+                    &nbsp;Terms and Conditions
+                  </a>
+                </Link>
+              </label>
+            </div>
+          </div>
 
           <div className="mt-5">
             <button
