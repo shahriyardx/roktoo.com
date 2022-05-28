@@ -8,7 +8,6 @@ import { getSession } from "next-auth/react";
 
 const EditPost = ({ post }) => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const { time, ...postInfo } = post;
   console.log(time);
@@ -156,7 +155,7 @@ const EditPost = ({ post }) => {
                 className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 items-center disabled:bg-green-800 disabled:cursor-not-allowed"
               >
                 {loading && <BiLoaderAlt className="text-xl animate-spin" />}
-                <span>Create Post</span>
+                <span>Update Post</span>
               </button>
             </div>
           </div>

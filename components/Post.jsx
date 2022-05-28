@@ -41,7 +41,7 @@ const Post = ({ post, refetch }) => {
   };
   return (
     <div
-      className={`p-4 rounded-md shadow-lg border-2 border-red-200 ${
+      className={`p-4 rounded-md shadow-lg border-2 border-red-200 flex flex-col ${
         post.fulfilled && "bg-green-300"
       }`}
     >
@@ -62,7 +62,7 @@ const Post = ({ post, refetch }) => {
         <span>{post.phone} </span>
       </p>
 
-      <div className="flex gap-3 flex-wrap mt-3">
+      <div className="flex gap-3 flex-wrap mt-auto pt-3">
         {!post.fulfilled && (
           <>
             <Link href={`/profile/posts/${post._id}`} passHref>

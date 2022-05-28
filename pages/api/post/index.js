@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     return res.json({ error: "Bad request" });
   }
 
-  const posts = await PostModel.find({});
+  const posts = await PostModel.find({}).sort({ createdAt: -1 });
   res.json(posts);
 };
 

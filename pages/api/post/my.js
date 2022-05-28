@@ -13,7 +13,9 @@ const handler = async (req, res) => {
     return res.json({ error: "Unauthorized" });
   }
 
-  const posts = await PostModel.find({ user_id: session.user._id });
+  const posts = await PostModel.find({ user_id: session.user._id }).sort({
+    createdAt: -1,
+  });
   res.json(posts);
 };
 
