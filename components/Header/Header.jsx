@@ -45,10 +45,7 @@ const Header = () => {
         >
           <NavLink href="/search" text="Search" />
           {status !== "authenticated" && (
-            <>
-              <NavLink href="/login" text="Login" />
-              <NavLink href="/register" text="Register" />
-            </>
+            <NavLink href="/register" text="Register" />
           )}
 
           {status === "authenticated" && (
@@ -56,13 +53,19 @@ const Header = () => {
           )}
         </div>
 
-        {status === "authenticated" && (
+        {status === "authenticated" ? (
           <button
             onClick={signOut}
             className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-auto sm:ml-5"
           >
             Logout
           </button>
+        ) : (
+          <Link href="/login">
+            <a className="px-5 py-2 bg-green-500 text-white font-semibold rounded-full ml-auto sm:ml-5">
+              Login
+            </a>
+          </Link>
         )}
 
         <div className="ml-3 sm:hidden" onClick={() => setOpen(!open)}>
