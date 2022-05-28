@@ -35,7 +35,6 @@ const Password = () => {
       }
     ).then((data) => data.json());
 
-    console.log(response);
     if (response.error) {
       toast.error(response.error);
     } else {

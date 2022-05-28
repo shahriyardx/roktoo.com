@@ -36,7 +36,6 @@ const EditProfile = ({ user }) => {
     if (!district || !area) return;
 
     setLoading(true);
-    console.log(updateinfo);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE}/user/update`,
       {

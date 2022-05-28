@@ -9,7 +9,6 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  console.log(Component.requireAuth);
   return (
     <SessionProvider session={session}>
       <NextNProgress color="#ff0000" />

@@ -24,7 +24,6 @@ const handler = async (req, res) => {
   }
 
   const body = req.body;
-  console.log(body);
   const valid = await bcrypt.compare(body.old_password, user.password_hash);
 
   if (!valid) {

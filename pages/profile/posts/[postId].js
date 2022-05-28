@@ -10,7 +10,6 @@ const EditPost = ({ post }) => {
   const [loading, setLoading] = useState(false);
 
   const { time, ...postInfo } = post;
-  console.log(time);
   const {
     register,
     handleSubmit,
