@@ -1,15 +1,13 @@
-import { useSession } from "next-auth/react";
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import Container from "../components/Container";
 import Page from "../components/Page";
 import Post from "../components/Post";
 import SEO from "../components/SEO";
+import Loading from "../components/Loading";
 
 const Requirements = () => {
-  const { data: session } = useSession();
-
-  const { data: posts } = useQuery("requirements", () =>
+  const { data: posts, isLoading } = useQuery("requirements", () =>
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/post`).then((data) =>
       data.json()
     )
@@ -28,6 +26,16 @@ const Requirements = () => {
             }
           })}
         </div>
+
+        {posts === undefined || isLoading ? (
+          <Loading />
+        ) : (
+          posts.length < 1 && (
+            <h1 className="text-3xl font-bold text-red-500 text-center mt-20">
+              No blood requirements are found
+            </h1>
+          )
+        )}
       </Container>
     </Page>
   );
