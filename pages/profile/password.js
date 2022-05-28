@@ -54,8 +54,8 @@ const Password = () => {
             </label>
             <input
               type="password"
-              name="name"
-              id="name"
+              name="old_password"
+              id="old_password"
               placeholder="Old Password"
               {...register("old_password", {
                 required: {
@@ -75,8 +75,8 @@ const Password = () => {
             </label>
             <input
               type="password"
-              name="name"
-              id="name"
+              name="new_password"
+              id="new_password"
               placeholder="New Password"
               {...register("new_password", {
                 required: {
@@ -96,8 +96,8 @@ const Password = () => {
             </label>
             <input
               type="password"
-              name="name"
-              id="name"
+              name="confirm_password"
+              id="confirm_password"
               placeholder="Confirm Password"
               {...register("confirm_password", {
                 required: {

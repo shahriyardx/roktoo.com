@@ -4,22 +4,27 @@ import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import { BiLoaderAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 
-const CreatePost = () => {
+const EditPost = ({ post }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const { time, ...postInfo } = post;
+  console.log(time);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: { ...postInfo, time: time.split("T")[0] },
+  });
 
   const createPost = async (data) => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/post/create`,
+      `${process.env.NEXT_PUBLIC_API_BASE}/post/${postInfo._id}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
@@ -31,8 +36,7 @@ const CreatePost = () => {
       return toast.error(response.error);
     }
 
-    toast.success("Post has been created.");
-    router.push("/profile/posts");
+    toast.success("Post has been Updated.");
   };
   return (
     <ProfileLayout>
@@ -160,4 +164,28 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;
+
+export const getServerSideProps = async ({ req, res, query }) => {
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const { postId } = query;
+
+  const postData = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/post/${postId}`
+  ).then((res) => res.json());
+
+  return {
+    props: {
+      post: postData,
+    },
+  };
+};
