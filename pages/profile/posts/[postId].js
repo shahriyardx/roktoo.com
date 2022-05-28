@@ -21,6 +21,7 @@ const EditPost = ({ post }) => {
   });
 
   const createPost = async (data) => {
+    setLoading(true);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE}/post/${postInfo._id}`,
       {
@@ -31,6 +32,7 @@ const EditPost = ({ post }) => {
         body: JSON.stringify(data),
       }
     ).then((data) => data.json());
+    setLoading(false);
 
     if (response.error) {
       return toast.error(response.error);
