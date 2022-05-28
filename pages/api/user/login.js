@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const { phone, password } = req.body;
 
   const userExists = await UserModel.findOne({ phone }).select(
-    "phone password_hash"
+    "phone admin password_hash"
   );
   if (!userExists) {
     res.statusCode = 403;
