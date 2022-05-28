@@ -41,9 +41,10 @@ const Header = () => {
           <BiMenu className="text-2xl" />
         </div>
         <div
-          className={`flex sm:gap-3 ml-auto absolute sm:static top-16 left-0 flex-col sm:flex-row sm:w-auto bg-zinc-700 sm:bg-transparent text-white sm:text-black w-full ${
-            open || "hidden sm:flex"
-          }`}
+          className={`
+          flex sm:gap-3 ml-auto absolute sm:static top-16 left-0 flex-col 
+          sm:flex-row sm:w-auto bg-zinc-700 sm:bg-transparent text-white 
+          sm:text-black w-full z-50 ${open || "hidden sm:flex"}`}
         >
           <NavLink href="/search" text="Search" />
           {status !== "authenticated" && (
