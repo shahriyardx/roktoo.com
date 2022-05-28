@@ -4,11 +4,14 @@ import Container from "../components/Container";
 import Page from "../components/Page";
 import cities from "../data/cities";
 import { BiLoaderAlt } from "react-icons/bi";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Search = () => {
   const [searching, setSearching] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [searched, setSearched] = useState(false);
+  const { data: session } = useSession();
 
   const {
     register,
@@ -125,6 +128,20 @@ const Search = () => {
                 </button>
               </div>
             </form>
+
+            {!session && (
+              <div className="p-4 bg-red-500 mt-5 rounded-md flex flex-col gap-5">
+                <h1 className="text-xl text-white font-bold text-center">
+                  You need someone in need, maybe someone need you too
+                </h1>
+
+                <Link href="/register" passHref>
+                  <a className="px-5 py-3 bg-white rounded-md text-center font-semibold">
+                    Become Donor
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
 
           <div className="overflow-x-auto">
