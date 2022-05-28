@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const { phone, password } = req.body;
 
   const userExists = await UserModel.findOne({ phone }).select(
-    "phone admin password_hash"
+    "phone blood address district area available name admin password_hash"
   );
   if (!userExists) {
     res.statusCode = 403;
@@ -23,15 +23,12 @@ export default async function handler(req, res) {
     return res.json({ error: "Invalid phone or password" });
   }
 
-  const user = {
-    _id: userExists._id,
-    phone: userExists.phone,
-    admin: userExists.admin,
-  };
-  const accessToken = jwt.sign(user, "process.env.JWT_SECRET");
+  const { _id, password_hash, ...user } = userExists._doc;
+  const payload = { _id: _id.toString(), ...user };
+  const accessToken = jwt.sign(payload, "process.env.JWT_SECRET");
 
   res.json({
     accessToken,
-    user,
+    user: payload,
   });
 }

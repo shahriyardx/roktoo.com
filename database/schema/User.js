@@ -48,6 +48,19 @@ const UserSchemma = joi.object({
   area: joi.string().required(),
 });
 
+const UserUpdateSchema = joi.object({
+  phone: joi
+    .string()
+    .pattern(/^(?:\+88|88)?(01[3-9]\d{8})$/)
+    .required(),
+  blood: joi.string().required(),
+  address: joi.string(),
+  name: joi.string().required(),
+  district: joi.string().required(),
+  area: joi.string().required(),
+  available: joi.boolean().required(),
+});
+
 UserSchemaMongo.pre("save", function (next) {
   this.available = true;
   this.admin = false;
@@ -60,4 +73,5 @@ const UserModel =
 module.exports = {
   UserModel,
   UserSchemma,
+  UserUpdateSchema,
 };
