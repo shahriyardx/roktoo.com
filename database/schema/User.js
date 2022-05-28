@@ -30,6 +30,7 @@ const UserSchemaMongo = new mongoose.Schema(
       type: String,
       required: true,
     },
+    admin: Boolean,
   },
   { timestamps: true }
 );
@@ -49,6 +50,7 @@ const UserSchemma = joi.object({
 
 UserSchemaMongo.pre("save", function (next) {
   this.available = true;
+  this.admin = false;
   next();
 });
 
