@@ -8,6 +8,10 @@ const PostSchemaMongo = new mongoose.Schema(
       type: String,
       required: true,
     },
+    blood: {
+      type: String,
+      required: true,
+    },
     location: {
       type: String,
       required: true,
@@ -16,7 +20,10 @@ const PostSchemaMongo = new mongoose.Schema(
       type: String,
       required: true,
     },
-    details: String,
+    details: {
+      type: String,
+      required: true,
+    },
     time: {
       type: Date,
       required: true,
@@ -35,6 +42,7 @@ const PostSchemaMongo = new mongoose.Schema(
 
 const PostSchema = joi.object({
   title: joi.string().required(),
+  blood: joi.string().required(),
   location: joi.string().required(),
   phone: joi.string().required(),
   details: joi.string().required(),
@@ -44,6 +52,7 @@ const PostSchema = joi.object({
 
 const PostUpdateSchema = joi.object({
   title: joi.string().required(),
+  blood: joi.string().required(),
   location: joi.string().required(),
   phone: joi.string().required(),
   details: joi.string().required(),

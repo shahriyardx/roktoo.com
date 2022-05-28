@@ -64,6 +64,35 @@ const CreatePost = () => {
             </div>
 
             <div className="flex flex-col">
+              <label htmlFor="blood" className="text-lg">
+                Blood Group
+              </label>
+              <select
+                name="blood"
+                id="blood"
+                {...register("blood", {
+                  required: {
+                    value: true,
+                    message: "Please select blood group",
+                  },
+                })}
+              >
+                <option value="">- Blood group -</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+              <p className=" mt-1 text-sm text-red-500">
+                {errors.blood?.message}
+              </p>
+            </div>
+
+            <div className="flex flex-col">
               <label htmlFor="location" className="text-lg">
                 Location
               </label>

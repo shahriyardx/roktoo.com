@@ -48,6 +48,10 @@ const Post = ({ post, refetch, session }) => {
       <h1 className="text-xl font-bold mb-1">{post.title}</h1>
       <p className="mb-5">{post.details}</p>
       <p>
+        <span className="font-bold">Blood : </span>
+        <span className="font-bold text-red-500">{post.blood} </span>
+      </p>
+      <p>
         <span className="font-bold">Location : </span>
         <span>{post.location} </span>
       </p>
