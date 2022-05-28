@@ -1,9 +1,11 @@
+import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import Post from "../../../components/Post";
 
 const Posts = () => {
+  const { data: session } = useSession();
   const [condition, setCondition] = useState(null);
   const { data: posts, refetch } = useQuery("posts", () =>
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/post/my`).then((res) =>
@@ -46,7 +48,14 @@ const Posts = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {renderPosts?.map((post) => {
-          return <Post refetch={refetch} key={post._id} post={post} />;
+          return (
+            <Post
+              refetch={refetch}
+              key={post._id}
+              post={post}
+              session={session}
+            />
+          );
         })}
       </div>
     </ProfileLayout>

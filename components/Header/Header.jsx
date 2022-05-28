@@ -7,6 +7,7 @@ import { BiMenu } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
+import { GoPrimitiveDot } from "react-icons/go";
 
 const Header = () => {
   const { data: session, status } = useSession();
@@ -43,6 +44,19 @@ const Header = () => {
           sm:flex-row sm:w-auto bg-zinc-700 sm:bg-transparent text-white 
           sm:text-black w-full z-50 ${open || "hidden sm:flex"}`}
         >
+          <NavLink
+            href="/requirements"
+            text={
+              <p className="flex items-center gap-1">
+                <span>Need Blood</span>{" "}
+                <GoPrimitiveDot
+                  className="text-red-500 animate-pulse
+                "
+                />{" "}
+              </p>
+            }
+          />
+
           <NavLink href="/search" text="Search" />
           {status !== "authenticated" && (
             <NavLink href="/register" text="Register" />

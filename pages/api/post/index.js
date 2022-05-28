@@ -1,4 +1,3 @@
-import { getSession } from "next-auth/react";
 import { PostModel } from "../../../database/schema/Post";
 
 const handler = async (req, res) => {
@@ -7,7 +6,9 @@ const handler = async (req, res) => {
     return res.json({ error: "Bad request" });
   }
 
-  const posts = await PostModel.find({}).sort({ createdAt: -1 });
+  const posts = await PostModel.find({ fulfilled: false }).sort({
+    createdAt: -1,
+  });
   res.json(posts);
 };
 

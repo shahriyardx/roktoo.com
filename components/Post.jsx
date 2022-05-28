@@ -3,7 +3,7 @@ import React from "react";
 import { format, compareAsc } from "date-fns";
 import toast from "react-hot-toast";
 
-const Post = ({ post, refetch }) => {
+const Post = ({ post, refetch, session }) => {
   const handleDelete = async () => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE}/post/${post._id}`,
@@ -54,7 +54,7 @@ const Post = ({ post, refetch }) => {
 
       <p>
         <span className="font-bold">Date/Time : </span>
-        <span>{format(new Date(post.time), "Pp")} </span>
+        <span>{format(new Date(post.time), "PP")} </span>
       </p>
 
       <p>
@@ -63,28 +63,31 @@ const Post = ({ post, refetch }) => {
       </p>
 
       <div className="flex gap-3 flex-wrap mt-auto pt-3">
-        {!post.fulfilled && (
+        {session?.user?._id === post.user_id && (
           <>
-            <Link href={`/profile/posts/${post._id}`} passHref>
-              <a className="px-5 py-2 font-semibold bg-yellow-500 rounded-md">
-                Edit
-              </a>
-            </Link>
+            {!post.fulfilled && (
+              <>
+                <Link href={`/profile/posts/${post._id}`} passHref>
+                  <a className="px-5 py-2 font-semibold bg-yellow-500 rounded-md">
+                    Edit
+                  </a>
+                </Link>
+                <button
+                  onClick={handleFulfilled}
+                  className="px-5 py-2 font-semibold bg-green-500 text-white rounded-md"
+                >
+                  Fullfilled
+                </button>
+              </>
+            )}
             <button
-              onClick={handleFulfilled}
-              className="px-5 py-2 font-semibold bg-green-500 text-white rounded-md"
+              onClick={handleDelete}
+              className="px-5 py-2 font-semibold bg-red-500 text-white rounded-md"
             >
-              Fullfilled
+              Delete
             </button>
           </>
         )}
-
-        <button
-          onClick={handleDelete}
-          className="px-5 py-2 font-semibold bg-red-500 text-white rounded-md"
-        >
-          Delete
-        </button>
       </div>
     </div>
   );
