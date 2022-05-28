@@ -33,6 +33,8 @@ const ProfileLayout = ({ children }) => {
               <ProfileNavLink href="/profile" text="My Profile" />
               <ProfileNavLink href="/profile/edit" text="Edit Profile" />
               <ProfileNavLink href="/profile/password" text="Change Password" />
+              <ProfileNavLink href="/profile/posts" text="My Posts" />
+              <ProfileNavLink href="/profile/posts/create" text="Create Post" />
             </div>
           </div>
         </div>
