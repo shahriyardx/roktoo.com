@@ -17,13 +17,13 @@ const SEO = ({ title, description, url }) => {
       <meta property="og:url" content={_url} />
       <meta property="og:title" content={_title} />
       <meta property="og:description" content={_description} />
-      <meta property="og:image" content="/images/roktoo.PNG" />
+      <meta property="og:image" content="/images/roktoo.png" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={_url} />
       <meta property="twitter:title" content={_title} />
       <meta property="twitter:description" content={_description} />
-      <meta property="twitter:image" content="/images/roktoo.PNG" />
+      <meta property="twitter:image" content="/images/roktoo.png" />
     </Head>
   );
 };
