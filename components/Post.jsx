@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 import toast from "react-hot-toast";
 
-const Post = ({ post, refetch, session }) => {
+const Post = ({ post, expired, refetch, session }) => {
   const handleDelete = async () => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE}/post/${post._id}`,
@@ -43,7 +43,7 @@ const Post = ({ post, refetch, session }) => {
     <div
       className={`p-4 rounded-md shadow-lg border-2 border-red-200 flex flex-col ${
         post.fulfilled && "bg-green-300"
-      }`}
+      } ${!post.fulfilled && expired && "bg-zinc-300"}`}
     >
       <h1 className="text-xl font-bold mb-1">{post.title}</h1>
       <p className="mb-5">{post.details}</p>

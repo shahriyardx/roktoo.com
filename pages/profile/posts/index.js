@@ -50,12 +50,15 @@ const Posts = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {renderPosts?.map((post) => {
+          const postDate = new Date(post.time).setHours(0, 0, 0, 0);
+          const currentDate = new Date().setHours(0, 0, 0, 0);
           return (
             <Post
               refetch={refetch}
               key={post._id}
               post={post}
               session={session}
+              expired={postDate < currentDate}
             />
           );
         })}
