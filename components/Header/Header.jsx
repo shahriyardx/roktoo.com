@@ -37,9 +37,6 @@ const Header = () => {
           </a>
         </Link>
 
-        <div className="p-3 ml-auto sm:hidden" onClick={() => setOpen(!open)}>
-          <BiMenu className="text-2xl" />
-        </div>
         <div
           className={`
           flex sm:gap-3 ml-auto absolute sm:static top-16 left-0 flex-col 
@@ -62,11 +59,15 @@ const Header = () => {
         {status === "authenticated" && (
           <button
             onClick={signOut}
-            className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-3 sm:ml-5"
+            className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-auto sm:ml-5"
           >
             Logout
           </button>
         )}
+
+        <div className="ml-3 sm:hidden" onClick={() => setOpen(!open)}>
+          <BiMenu className="text-2xl" />
+        </div>
       </Container>
     </div>
   );
