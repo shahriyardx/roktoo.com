@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
 import { getSession } from "next-auth/react";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
+import SEO from "../../components/SEO";
 
 const EditProfile = ({ user }) => {
   const [district, setDistrict] = useState(user.district);
@@ -77,6 +78,7 @@ const EditProfile = ({ user }) => {
 
   return (
     <ProfileLayout>
+      <SEO title="Edit Profile" />
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">

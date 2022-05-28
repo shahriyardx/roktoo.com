@@ -6,6 +6,7 @@ import cities from "../data/cities";
 import { BiLoaderAlt } from "react-icons/bi";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import SEO from "../components/SEO";
 
 const Search = () => {
   const [searching, setSearching] = useState(false);
@@ -56,6 +57,7 @@ const Search = () => {
 
   return (
     <Page>
+      <SEO title="Search" />
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-seachPage gap-10 mt-5">
           <div>

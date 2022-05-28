@@ -4,6 +4,7 @@ import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import { BiLoaderAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import SEO from "../../../components/SEO";
 
 const CreatePost = () => {
   const [loading, setLoading] = useState(false);
@@ -37,6 +38,7 @@ const CreatePost = () => {
   };
   return (
     <ProfileLayout>
+      <SEO title="Create post" />
       <div>
         <form onSubmit={handleSubmit(createPost)}>
           <div className="flex flex-col gap-3">

@@ -5,6 +5,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
+import SEO from "../../../components/SEO";
 
 const EditPost = ({ post }) => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ const EditPost = ({ post }) => {
   };
   return (
     <ProfileLayout>
+      <SEO title={`Edit post ${post.title}`} />
       <div>
         <form onSubmit={handleSubmit(createPost)}>
           <div className="flex flex-col gap-3">

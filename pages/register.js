@@ -6,6 +6,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
 import { signIn } from "next-auth/react";
+import SEO from "../components/SEO";
 
 const Register = () => {
   const [district, setDistrict] = useState();
@@ -74,6 +75,7 @@ const Register = () => {
 
   return (
     <Page>
+      <SEO title="Register" />
       <div className="w-full max-w-[400px] px-5 mx-auto mt-20">
         <h1 className="text-4xl font-bold text-red-500 text-center mb-5">
           Register

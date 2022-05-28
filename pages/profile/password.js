@@ -7,6 +7,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
+import SEO from "../../components/SEO";
 
 const Password = () => {
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,7 @@ const Password = () => {
 
   return (
     <ProfileLayout>
+      <SEO title="Change Password" />
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">

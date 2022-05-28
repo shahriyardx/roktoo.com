@@ -4,6 +4,7 @@ import Page from "../components/Page";
 import Link from "next/link";
 import { BiLoaderAlt } from "react-icons/bi";
 import { signIn } from "next-auth/react";
+import SEO from "../components/SEO";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ const Login = () => {
   };
   return (
     <Page>
+      <SEO title="Login" />
       <div className="w-full max-w-[400px] px-5 mx-auto mt-20">
         <h1 className="text-4xl font-bold text-red-500 text-center mb-5">
           Login

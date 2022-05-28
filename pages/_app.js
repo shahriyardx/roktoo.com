@@ -3,6 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import NextNProgress from "nextjs-progressbar";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import RequireAuth from "../components/RequireAuth";
+import SEO from "../components/SEO";
 const queryClient = new QueryClient();
 
 export default function App({
@@ -12,6 +13,7 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <NextNProgress color="#ff0000" />
+      <SEO />
       <QueryClientProvider client={queryClient}>
         {Component.requireAuth ? (
           <RequireAuth>

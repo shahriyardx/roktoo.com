@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import Post from "../../../components/Post";
+import SEO from "../../../components/SEO";
 
 const Posts = () => {
   const { data: session } = useSession();
@@ -20,6 +21,7 @@ const Posts = () => {
 
   return (
     <ProfileLayout>
+      <SEO title="My Posts" />
       <div className="flex items-center gap-3 mb-5">
         <button
           onClick={() => setCondition(null)}
