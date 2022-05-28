@@ -60,7 +60,6 @@ const Profile = ({ user }) => {
     }
     if (district) {
       setDisError("");
-      setArea("");
       setAreas(cities[district] || []);
     }
   }, [district]);

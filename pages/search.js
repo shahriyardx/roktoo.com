@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import Container from "../components/Container";
 import Page from "../components/Page";
 import cities from "../data/cities";
+import { BiLoaderAlt } from "react-icons/bi";
+import { API_BASE } from "../constrains";
 
 const Search = () => {
   const [searching, setSearching] = useState(false);
@@ -14,12 +16,24 @@ const Search = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const handleSearch = (data) => {
+  const handleSearch = async (data) => {
     district ? setDisError("") : setDisError("Please choose district");
 
     if (!district) return;
     setSearched(true);
+    const query = new URLSearchParams();
+    query.append("blood", data.blood);
+    query.append("district", district);
+
+    if (area) {
+      query.append("area", area);
+    }
     setSearching(true);
+    const response = await fetch(`${API_BASE}/search?${query}`).then((data) =>
+      data.json()
+    );
+    setSearchResult(response);
+    setSearching(false);
   };
 
   const [district, setDistrict] = useState();
@@ -28,6 +42,10 @@ const Search = () => {
   const [disError, setDisError] = useState("");
 
   useEffect(() => {
+    if (!district) {
+      setArea("");
+      setAreas([]);
+    }
     if (district) {
       setAreas(cities[district] || []);
       setDisError("");
@@ -100,8 +118,11 @@ const Search = () => {
                     );
                   })}
                 </select>
-                <button className="py-3 bg-red-500 font-semibold text-white">
-                  Search
+                <button className="py-3 bg-red-500 font-semibold text-white flex justify-center items-center gap-2">
+                  {searching && (
+                    <BiLoaderAlt className="text-2xl animate-spin" />
+                  )}
+                  <span>Search</span>
                 </button>
               </div>
             </form>
@@ -123,60 +144,42 @@ const Search = () => {
             )}
 
             <div>
-              <table className="text-left">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 bg-black text-white">SL.</th>
-                    <th className="px-5 py-3 bg-black text-white">Donor</th>
-                    <th className="px-5 py-3 bg-black text-white">Address</th>
-                    <th className="px-5 py-3 bg-black text-white">Phone</th>
-                  </tr>
-                </thead>
+              {searchResult.length > 0 && (
+                <table className="text-left w-full">
+                  <thead>
+                    <tr>
+                      <th className="px-5 py-3 bg-black text-white">SL.</th>
+                      <th className="px-5 py-3 bg-black text-white">Donor</th>
+                      <th className="px-5 py-3 bg-black text-white">Address</th>
+                      <th className="px-5 py-3 bg-black text-white">Phone</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  <tr>
-                    <td className="px-5 py-3 whitespace-nowrap">1</td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Md Shahriyar Alam
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Checkpost Rangpur, Rangpur Sadar, Rangpur
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">01761333883</td>
-                  </tr>
-
-                  <tr>
-                    <td className="px-5 py-3 whitespace-nowrap">1</td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Md Shahriyar Alam
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Checkpost Rangpur, Rangpur Sadar, Rangpur
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">01761333883</td>
-                  </tr>
-
-                  <tr>
-                    <td className="px-5 py-3 whitespace-nowrap">1</td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Md Shahriyar Alam
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Checkpost Rangpur
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">01761333883</td>
-                  </tr>
-
-                  <tr>
-                    <td className="px-5 py-3 whitespace-nowrap">1</td>
-                    <td className="px-5 py-3 whitespace-nowrap">
-                      Md Shahriyar Alam
-                    </td>
-                    <td className="px-5 py-3 whitespace-nowrap">Checkpost</td>
-                    <td className="px-5 py-3 whitespace-nowrap">01761333883</td>
-                  </tr>
-                </tbody>
-              </table>
+                  <tbody>
+                    {searchResult.map((donator, index) => {
+                      return (
+                        <tr key={index}>
+                          <td className="px-5 py-3 whitespace-nowrap">1</td>
+                          <td className="px-5 py-3 whitespace-nowrap">
+                            {donator.name}
+                          </td>
+                          <td className="px-5 py-3 whitespace-nowrap">
+                            {donator.address}
+                          </td>
+                          <td className="px-5 py-3 whitespace-nowrap">
+                            <a
+                              href={`tel:+88${donator.phone}`}
+                              className="font-bold text-blue-500 text-lg"
+                            >
+                              {donator.phone}
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         </div>
