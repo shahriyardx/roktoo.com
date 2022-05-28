@@ -41,7 +41,7 @@ const ProfileLayout = ({ children }) => {
         <div className="flex flex-col">
           <div className="pb-4 sm:pb-0">
             <button
-              className="px-3 py-2 rounded-md bg-zinc-800 text-white flex items-center gap-2 text-lg sm:hidden"
+              className="py-2 rounded-md flex items-center gap-2 text-lg sm:hidden"
               onClick={() => setOpen(true)}
             >
               <BiMenu className="text-xl" />

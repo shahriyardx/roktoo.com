@@ -16,14 +16,13 @@ const Posts = () => {
       ? posts
       : posts?.filter((post) => post.fulfilled === condition);
 
-  console.log(renderPosts, condition);
   return (
     <ProfileLayout>
       <div className="flex items-center gap-3 mb-5">
         <button
           onClick={() => setCondition(null)}
           className={`px-3 py-2 rounded-md ${
-            condition == null && "bg-red-500 text-white"
+            condition == null && "bg-zinc-700 text-white"
           }`}
         >
           All Posts
@@ -31,7 +30,7 @@ const Posts = () => {
         <button
           onClick={() => setCondition(true)}
           className={`px-3 py-2 rounded-md ${
-            condition === true && "bg-red-500 text-white"
+            condition === true && "bg-green-500 text-white"
           }`}
         >
           Fulfilled
