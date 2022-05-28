@@ -37,13 +37,16 @@ const Profile = ({ user }) => {
 
     setLoading(true);
     console.log(updateinfo);
-    const response = await fetch(`${API_BASE}/user/update`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(updateinfo),
-    }).then((data) => data.json());
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}/user/update`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(updateinfo),
+      }
+    ).then((data) => data.json());
 
     setLoading(false);
     if (response.error) {
@@ -250,7 +253,7 @@ export const getServerSideProps = async ({ req, res }) => {
       },
     };
   }
-  const user = await fetch(`${API_BASE}/user`, {
+  const user = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/user`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -4,7 +4,6 @@ import Container from "../components/Container";
 import Page from "../components/Page";
 import cities from "../data/cities";
 import { BiLoaderAlt } from "react-icons/bi";
-import { API_BASE } from "../constrains";
 
 const Search = () => {
   const [searching, setSearching] = useState(false);
@@ -29,9 +28,9 @@ const Search = () => {
       query.append("area", area);
     }
     setSearching(true);
-    const response = await fetch(`${API_BASE}/search?${query}`).then((data) =>
-      data.json()
-    );
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}/search?${query}`
+    ).then((data) => data.json());
     setSearchResult(response);
     setSearching(false);
   };

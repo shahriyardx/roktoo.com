@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Page from "../../components/Page";
 import Link from "next/link";
-import { API_BASE } from "../../constrains";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
 import { getSession } from "next-auth/react";
@@ -24,13 +23,16 @@ const Password = () => {
     }
 
     setLoading(true);
-    const response = await fetch(`${API_BASE}/user/password`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((data) => data.json());
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}/user/password`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    ).then((data) => data.json());
 
     console.log(response);
     if (response.error) {

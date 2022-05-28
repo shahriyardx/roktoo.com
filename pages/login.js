@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import Page from "../components/Page";
 import Link from "next/link";
 import { BiLoaderAlt } from "react-icons/bi";
-import { API_BASE } from "../constrains";
-import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 
 const Login = () => {

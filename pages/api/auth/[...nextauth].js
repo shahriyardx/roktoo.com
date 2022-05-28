@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { API_BASE } from "../../../constrains";
 
 export default NextAuth({
   providers: [
@@ -16,11 +15,14 @@ export default NextAuth({
           password: credentials.password,
         };
 
-        const res = await fetch(`${API_BASE}/user/login`, {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: { "Content-Type": "application/json" },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE}/user/login`,
+          {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
 
         const data = await res.json();
 
