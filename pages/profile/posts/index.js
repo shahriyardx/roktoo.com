@@ -54,4 +54,5 @@ const Posts = () => {
   );
 };
 
+Posts.requireAuth = true;
 export default Posts;

@@ -4,7 +4,7 @@ import Page from "../../components/Page";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
 
@@ -133,20 +133,5 @@ const Password = () => {
   );
 };
 
+Password.requireAuth = true;
 export default Password;
-
-export const getServerSideProps = async ({ req, res }) => {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};

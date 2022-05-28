@@ -161,4 +161,5 @@ const CreatePost = () => {
   );
 };
 
+CreatePost.requireAuth = true;
 export default CreatePost;
