@@ -23,7 +23,11 @@ export default async function handler(req, res) {
     return res.json({ error: "Invalid phone or password" });
   }
 
-  const user = { _id: userExists._id, phone: userExists.phone };
+  const user = {
+    _id: userExists._id,
+    phone: userExists.phone,
+    admin: userExists.admin,
+  };
   const accessToken = jwt.sign(user, "process.env.JWT_SECRET");
 
   res.json({

@@ -24,7 +24,6 @@ export default NextAuth({
 
         const data = await res.json();
 
-        console.log(data);
         if (!res.ok) {
           if (data.error) {
             throw new Error(data.error);

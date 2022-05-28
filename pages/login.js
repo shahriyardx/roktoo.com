@@ -20,26 +20,12 @@ const Login = () => {
     const { phone, password } = data;
     const matchedPhone = phone.match(PHONE_REGEX)[1];
 
+    setLoading(true);
     signIn("credentials", {
       phone: matchedPhone,
       password,
       callbackUrl: `${window.location.origin}/`,
     });
-
-    // const response = await fetch(`${API_BASE}/user/login`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(loginInfo),
-    // }).then((data) => data.json());
-
-    // console.log(response);
-    // if (response.error) {
-    //   toast.error(response.error);
-    // } else {
-    //   toast.success("Login successfull");
-    // }
   };
   return (
     <Page>
