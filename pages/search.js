@@ -132,7 +132,7 @@ const Search = () => {
             </form>
 
             {!session && (
-              <div className="p-4 bg-red-500 mt-5 rounded-md flex flex-col gap-5">
+              <div className="p-4 bg-red-500 mt-5 rounded-md flex-col gap-5 hidden md:flex">
                 <h1 className="text-xl text-white font-bold text-center">
                   You need someone in need, maybe someone need you too
                 </h1>
@@ -149,13 +149,13 @@ const Search = () => {
           <div className="overflow-x-auto">
             {!searching && (
               <>
-                <p className="text-lg">
+                <p className="text-lg dark:text-zinc-300">
                   {!searched &&
                     !searchResult.length &&
                     "Please select blood group and district to search"}
                 </p>
 
-                <p className="text-lg">
+                <p className="text-lg dark:text-zinc-300">
                   {searched && !searchResult.length && "No blood donor found."}
                 </p>
               </>

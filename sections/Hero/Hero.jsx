@@ -20,7 +20,7 @@ const Hero = () => {
               </div>
               <h1 className="text-6xl font-black text-red-500">Roktoo</h1>
 
-              <p className="text-2xl mt-5">
+              <p className="text-2xl mt-5 dark:text-white">
                 Your blood can save someone&apos;s life
               </p>
 

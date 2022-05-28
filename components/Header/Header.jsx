@@ -32,7 +32,7 @@ const Header = () => {
                 router.pathname == "/" && "underline decoration-red-500"
               }`}
             >
-              <span>Rokto</span>
+              <span className="dark:text-white">Rokto</span>
               <span className="text-red-500">o</span>
             </div>
           </a>
@@ -83,7 +83,7 @@ const Header = () => {
         )}
 
         <div className="ml-3 sm:hidden" onClick={() => setOpen(!open)}>
-          <BiMenu className="text-2xl" />
+          <BiMenu className="text-2xl dark:text-white" />
         </div>
       </Container>
     </div>

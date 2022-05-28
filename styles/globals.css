@@ -6,6 +6,19 @@
 
 @layer base {
   body {
-    @apply font-montserrat;
+    @apply font-montserrat dark:bg-zinc-800;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="text"],
+  input[type="date"],
+  textarea,
+  select {
+    @apply dark:bg-zinc-600 dark:text-white dark:placeholder-zinc-400;
+  }
+
+  label {
+    @apply dark:text-zinc-200;
   }
 }

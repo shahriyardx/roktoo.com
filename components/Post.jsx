@@ -41,8 +41,8 @@ const Post = ({ post, expired, refetch, session }) => {
   };
   return (
     <div
-      className={`p-4 rounded-md shadow-lg border-2 border-red-200 flex flex-col ${
-        post.fulfilled && "bg-green-300"
+      className={`p-4 rounded-md shadow-lg border-2 border-zinc-200 flex flex-col dark:bg-zinc-600 dark:text-zinc-300 dark:border-zinc-500 ${
+        post.fulfilled && "bg-green-300 dark:bg-green-300 dark:text-black"
       } ${!post.fulfilled && expired && "bg-zinc-300"}`}
     >
       <h1 className="text-xl font-bold mb-1">{post.title}</h1>
@@ -66,7 +66,7 @@ const Post = ({ post, expired, refetch, session }) => {
         <span>{post.phone} </span>
       </p>
 
-      <div className="flex gap-3 flex-wrap mt-auto pt-3">
+      <div className="flex gap-3 flex-wrap mt-auto pt-3 text-white">
         {session?.user?._id === post.user_id && (
           <>
             {!post.fulfilled && (

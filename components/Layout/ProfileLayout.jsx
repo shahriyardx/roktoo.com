@@ -16,8 +16,8 @@ const ProfileLayout = ({ children }) => {
             open ? "left-0" : "-left-full"
           }`}
         >
-          <div className="w-full h-full max-w-[300px] bg-zinc-800 sm:bg-transparent">
-            <div className="h-16 flex items-center justify-between px-4 bg-zinc-80 sm:hidden bg-zinc-700">
+          <div className="w-full h-full max-w-[300px] bg-zinc-800 dark:bg-zinc-700 sm:bg-transparent">
+            <div className="h-16 flex items-center justify-between px-4 bg-zinc-80 sm:hidden bg-zinc-700 dark:bg-zinc-600">
               <div className="text-xl font-semibold">
                 <span className="text-white">Rokto</span>
                 <span className="text-red-500">o</span>
@@ -41,7 +41,7 @@ const ProfileLayout = ({ children }) => {
         <div className="flex flex-col">
           <div className="pb-4 sm:pb-0">
             <button
-              className="py-2 rounded-md flex items-center gap-2 text-lg sm:hidden"
+              className="py-2 rounded-md flex items-center gap-2 text-lg sm:hidden dark:text-white"
               onClick={() => setOpen(true)}
             >
               <BiMenu className="text-xl" />

@@ -6,7 +6,7 @@ const NavLink = ({ href, text }) => {
   return (
     <Link href={href} passHref>
       <a
-        className={`sm:hover:text-red-500 py-3 px-4 sm:px-0 sm:py-0 ${
+        className={`sm:hover:text-red-500 py-3 px-4 sm:px-0 sm:py-0 dark:text-white ${
           router.pathname == href &&
           "text-white bg-red-500 sm:bg-transparent sm:text-red-500 sm:font-semibold"
         }`}

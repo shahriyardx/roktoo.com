@@ -12,7 +12,7 @@ const CallToAction = () => {
           </h1>
 
           <Link href="/register" passHref>
-            <a className="text-lg px-5 py-3 bg-white rounded-md hover:bg-red-900 hover:text-white font-bold">
+            <a className="text-lg px-5 py-3 bg-white dark:text-black rounded-md hover:bg-red-900 hover:text-white font-bold">
               Donate now
             </a>
           </Link>

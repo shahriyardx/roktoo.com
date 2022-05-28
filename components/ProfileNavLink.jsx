@@ -7,7 +7,7 @@ const ProfileNavLink = ({ href, text }) => {
   return (
     <Link href={href} passHref>
       <a
-        className={`px-4 py-3 rounded-md text-white sm:text-black ${
+        className={`px-4 py-3 rounded-md text-white sm:text-black dark:sm:text-zinc-300 ${
           router.pathname == href
             ? "bg-red-500 !text-white"
             : "hover:bg-zinc-300 hover:text-black"

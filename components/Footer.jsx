@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="flex justify-center py-5">
       <span>
-        Made with 💝 by{" "}
+        <span className="dark:text-zinc-300">Made with 💝 by </span>
         <a
           href="https://facebook.com/shahriyardx"
           target="_blank"
