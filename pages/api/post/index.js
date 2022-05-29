@@ -6,10 +6,19 @@ const handler = async (req, res) => {
     return res.json({ error: "Bad request" });
   }
 
-  const posts = await PostModel.find({ fulfilled: false }).sort({
-    createdAt: -1,
-  });
-  res.json(posts);
+  const page = req.query.page ? parseInt(req.query.page) : 0;
+  const filter = {
+    fulfilled: false,
+    time: { $gt: new Date().setHours(0, 0, 0, 0) },
+  };
+  const postCount = await PostModel.countDocuments(filter);
+  const posts = await PostModel.find(filter)
+    .sort({
+      createdAt: -1,
+    })
+    .skip(page * 20)
+    .limit(20);
+  res.json({ posts, postCount });
 };
 
 export default handler;

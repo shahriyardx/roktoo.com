@@ -25,7 +25,10 @@ const CreatePost = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          time: new Date(data.time).toISOString(),
+        }),
       }
     ).then((data) => data.json());
     setLoading(false);
