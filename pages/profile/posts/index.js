@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import Post from "../../../components/Post";

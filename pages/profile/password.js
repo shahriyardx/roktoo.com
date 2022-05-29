@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Page from "../../components/Page";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
-import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
 import SEO from "../../components/SEO";

@@ -1,5 +1,5 @@
 import React from "react";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
 import SEO from "../../components/SEO";
 

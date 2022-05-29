@@ -19,6 +19,7 @@ const Search = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const handleSearch = async (data) => {
     district ? setDisError("") : setDisError("Please choose district");
 

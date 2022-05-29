@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import ProfileLayout from "../../../components/Layout/ProfileLayout";
 import { BiLoaderAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import SEO from "../../../components/SEO";
 
