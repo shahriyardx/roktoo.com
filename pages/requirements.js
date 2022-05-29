@@ -36,7 +36,7 @@ const Requirements = () => {
           })}
         </div>
 
-        {futurePosts === undefined || isLoading ? (
+        {isLoading ? (
           <Loading />
         ) : (
           futurePosts.length < 1 && (
