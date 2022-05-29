@@ -122,7 +122,7 @@ const Search = () => {
                     );
                   })}
                 </select>
-                <button className="py-3 bg-red-500 font-semibold text-white flex justify-center items-center gap-2">
+                <button className="py-3 bg-red-500 font-semibold text-white flex justify-center items-center gap-2 mt-1">
                   {searching && (
                     <BiLoaderAlt className="text-2xl animate-spin" />
                   )}
@@ -134,7 +134,7 @@ const Search = () => {
             {!session && (
               <div className="p-4 bg-red-500 mt-5 rounded-md flex-col gap-5 hidden md:flex">
                 <h1 className="text-xl text-white font-bold text-center">
-                  You need someone in need, maybe someone need you too
+                  You need someone for blood, maybe someone need you too
                 </h1>
 
                 <Link href="/register" passHref>
@@ -177,14 +177,16 @@ const Search = () => {
                     {searchResult.map((donator, index) => {
                       return (
                         <tr key={index}>
-                          <td className="px-5 py-3 whitespace-nowrap">1</td>
-                          <td className="px-5 py-3 whitespace-nowrap">
+                          <td className="px-5 py-3 whitespace-nowrap dark:text-zinc-200">
+                            1
+                          </td>
+                          <td className="px-5 py-3 whitespace-nowrap dark:text-zinc-200">
                             {donator.name}
                           </td>
-                          <td className="px-5 py-3 whitespace-nowrap">
+                          <td className="px-5 py-3 whitespace-nowrap dark:text-zinc-200">
                             {donator.address}
                           </td>
-                          <td className="px-5 py-3 whitespace-nowrap">
+                          <td className="px-5 py-3 whitespace-nowrap dark:text-zinc-200">
                             <a
                               href={`tel:+88${donator.phone}`}
                               className="font-bold text-blue-500 text-lg"
