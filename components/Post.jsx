@@ -40,12 +40,17 @@ const Post = ({ post, expired, refetch, session }) => {
     refetch();
   };
   return (
-    <div
-      className={`p-4 rounded-md shadow-lg border-2 border-zinc-200 flex flex-col dark:bg-zinc-600 dark:text-zinc-300 dark:border-zinc-500 ${
-        post.fulfilled && "bg-green-300 dark:bg-green-300 dark:text-black"
-      } ${!post.fulfilled && expired && "bg-zinc-300"}`}
-    >
-      <h1 className="text-xl font-bold mb-1">{post.title}</h1>
+    <div className="p-4 rounded-md border-2 flex flex-col dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-500">
+      <h1 className="text-xl font-bold mb-1">
+        <span>{post.title}</span>
+        {post.fulfilled ? (
+          <span className="text-green-500 text-lg ml-1">(Fulfilled)</span>
+        ) : expired ? (
+          <span className="text-yellow-500 text-lg ml-1">(Expired)</span>
+        ) : (
+          ""
+        )}
+      </h1>
       <p className="mb-5">{post.details}</p>
       <p>
         <span className="font-bold">Blood : </span>
@@ -71,22 +76,22 @@ const Post = ({ post, expired, refetch, session }) => {
           <>
             {!post.fulfilled && (
               <>
-                <Link href={`/profile/posts/${post._id}`} passHref>
-                  <a className="px-5 py-2 font-semibold bg-yellow-500 rounded-md">
-                    Edit
-                  </a>
-                </Link>
                 <button
                   onClick={handleFulfilled}
                   className="px-5 py-2 font-semibold bg-green-500 text-white rounded-md"
                 >
                   Fullfilled
                 </button>
+                <Link href={`/profile/posts/${post._id}`} passHref>
+                  <a className="px-5 py-2 font-semibold bg-zinc-500 rounded-md">
+                    Edit
+                  </a>
+                </Link>
               </>
             )}
             <button
               onClick={handleDelete}
-              className="px-5 py-2 font-semibold bg-red-500 text-white rounded-md"
+              className="px-5 py-2 font-semibold bg-zinc-200 text-black rounded-md"
             >
               Delete
             </button>
