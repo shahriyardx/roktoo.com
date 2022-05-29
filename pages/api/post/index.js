@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   const page = req.query.page ? parseInt(req.query.page) : 0;
   const filter = {
     fulfilled: false,
-    time: { $gt: new Date().setHours(0, 0, 0, 0) },
+    time: { $gte: new Date().setHours(0, 0, 0, 0) },
   };
   const postCount = await PostModel.countDocuments(filter);
   const posts = await PostModel.find(filter)
