@@ -12,12 +12,21 @@ const Requirements = () => {
       data.json()
     )
   );
+
+  const futurePosts = posts
+    ? posts.filter(
+        (post) =>
+          new Date(post.time).setHours(0, 0, 0, 0) >=
+          new Date().setHours(0, 0, 0, 0)
+      )
+    : posts;
+
   return (
     <Page>
       <SEO title="Need Blood" />
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
-          {posts?.map((post) => {
+          {futurePosts?.map((post) => {
             const postDate = new Date(post.time).setHours(0, 0, 0, 0);
             const currentDate = new Date().setHours(0, 0, 0, 0);
 
@@ -27,10 +36,10 @@ const Requirements = () => {
           })}
         </div>
 
-        {posts === undefined || isLoading ? (
+        {futurePosts === undefined || isLoading ? (
           <Loading />
         ) : (
-          posts.length < 1 && (
+          futurePosts.length < 1 && (
             <h1 className="text-3xl font-bold text-red-500 text-center mt-20">
               No blood requirements are found
             </h1>
