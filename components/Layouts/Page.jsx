@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "./Footer";
-import Header from "./Header/Header";
+import Footer from "../../sections/Footer/Footer";
+import Header from "../../sections/Header/Header";
 import { Toaster } from "react-hot-toast";
 
 const Page = ({ children }) => {

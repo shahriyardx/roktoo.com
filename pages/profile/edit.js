@@ -5,7 +5,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
 import { getSession } from "next-auth/react";
-import ProfileLayout from "../../components/Layout/ProfileLayout";
+import ProfileLayout from "../../components/Layouts/ProfileLayout";
 import SEO from "../../components/SEO";
 
 const EditProfile = ({ user }) => {

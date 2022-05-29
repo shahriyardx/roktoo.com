@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Page from "../components/Page";
+import Page from "../components/Layouts/Page";
 import Link from "next/link";
 import { BiLoaderAlt } from "react-icons/bi";
 import { signIn } from "next-auth/react";

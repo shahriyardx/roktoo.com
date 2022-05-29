@@ -1,6 +1,6 @@
 import React from "react";
 import { useSession } from "next-auth/react";
-import ProfileLayout from "../../components/Layout/ProfileLayout";
+import ProfileLayout from "../../components/Layouts/ProfileLayout";
 import SEO from "../../components/SEO";
 
 const Profile = () => {

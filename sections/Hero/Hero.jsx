@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../../components/Container";
+import Container from "../../components/Layouts/Container";
 import Image from "next/image";
 import Link from "next/link";
 

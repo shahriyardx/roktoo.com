@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Container from "../Container";
-import NavLink from "./NavLink";
+import Container from "../../components/Layouts/Container";
+import NavLink from "../../components/NavLink";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BiMenu } from "react-icons/bi";

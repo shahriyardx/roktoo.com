@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Container from "../Container";
-import Page from "../Page";
+import Container from "./Container";
+import Page from "./Page";
 import ProfileNavLink from "../ProfileNavLink";
 import { BiX, BiMenu } from "react-icons/bi";
 

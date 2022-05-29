@@ -1,4 +1,4 @@
-import Page from "../components/Page";
+import Page from "../components/Layouts/Page";
 import CallToAction from "../sections/CallToAction/CallToAction";
 import Hero from "../sections/Hero/Hero";
 import HowItWorks from "../sections/HowItWorks/HowItWorks";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import Container from "../components/Container";
-import Page from "../components/Page";
+import Container from "../components/Layouts/Container";
+import Page from "../components/Layouts/Page";
 import Post from "../components/Post";
 import SEO from "../components/SEO";
 import Loading from "../components/Loading";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Container from "../components/Container";
-import Page from "../components/Page";
+import Container from "../components/Layouts/Container";
+import Page from "../components/Layouts/Page";
 import cities from "../data/cities";
 import { BiLoaderAlt } from "react-icons/bi";
 import Link from "next/link";

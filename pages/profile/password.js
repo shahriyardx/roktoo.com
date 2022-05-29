@@ -4,7 +4,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
 import { useRouter } from "next/router";
-import ProfileLayout from "../../components/Layout/ProfileLayout";
+import ProfileLayout from "../../components/Layouts/ProfileLayout";
 import SEO from "../../components/SEO";
 
 const Password = () => {

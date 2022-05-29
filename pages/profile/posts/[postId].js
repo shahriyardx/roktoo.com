@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import ProfileLayout from "../../../components/Layout/ProfileLayout";
+import ProfileLayout from "../../../components/Layouts/ProfileLayout";
 import { BiLoaderAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { getSession } from "next-auth/react";
