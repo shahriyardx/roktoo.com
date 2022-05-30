@@ -8,7 +8,11 @@ const RequireAuth = ({ children }) => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <Loading />;
+    return (
+      <div className="w-full h-screen flex justify-center items-center text-3xl">
+        <Loading />
+      </div>
+    );
   }
 
   if (status === "unauthenticated") {
