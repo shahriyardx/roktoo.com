@@ -42,7 +42,7 @@ const CreatePost = () => {
   return (
     <ProfileLayout>
       <SEO title="Create post" />
-      <div>
+      <div className="sm:pb-10">
         <form onSubmit={handleSubmit(createPost)}>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col">

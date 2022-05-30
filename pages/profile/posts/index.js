@@ -48,7 +48,7 @@ const Posts = () => {
           Unfulfilled
         </button>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:pb-10">
         {renderPosts?.map((post) => {
           const postDate = new Date(post.time).setHours(0, 0, 0, 0);
           const currentDate = new Date().setHours(0, 0, 0, 0);

@@ -27,7 +27,7 @@ const ProfileLayout = ({ children }) => {
   return (
     <Page>
       <Container
-        className="grid grid-cols-1 sm:grid-cols-seachPage gap-5 mt-5 min-h-[calc(100vh-170px)]"
+        className="grid grid-cols-1 sm:grid-cols-seachPage gap-5 sm:pt-5"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -39,7 +39,7 @@ const ProfileLayout = ({ children }) => {
           <BiMenu />
         </div>
         <div
-          className={`fixed sm:static top-0 left-0 h-screen w-full z-30 transition-all ${
+          className={`fixed sm:static top-0 left-0 w-full z-30 transition-all h-screen sm:h-[calc(100vh-6rem)] ${
             open ? "left-0" : "-left-full"
           }`}
         >
@@ -66,7 +66,7 @@ const ProfileLayout = ({ children }) => {
           </div>
         </div>
 
-        <div>{children}</div>
+        <div className="min-h-[70vh]">{children}</div>
       </Container>
     </Page>
   );

@@ -93,7 +93,7 @@ const EditProfile = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <form onSubmit={handleSubmit(handleUpdate)}>
+        <form onSubmit={handleSubmit(handleUpdate)} className="sm:pb-10">
           <div className="flex flex-col gap-3">
             <div className="flex flex-col">
               <label htmlFor="phone" className="text-lg">

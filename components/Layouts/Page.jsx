@@ -5,10 +5,12 @@ import BottomNav from "../BottomNav";
 
 const Page = ({ children }) => {
   return (
-    <div className="pb-20 sm:pb-0">
+    <div>
       <Header />
       <BottomNav />
-      <div className="min-h-[calc(90vh-4rem)] pt-16 sm:pt-0">{children}</div>
+      <div className="min-h-[85vh] sm:min-h-[calc(100vh-65px)] py-20 sm:py-0">
+        {children}
+      </div>
       <Toaster />
     </div>
   );

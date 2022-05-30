@@ -60,7 +60,7 @@ const Search = () => {
     <Page>
       <SEO title="Search" />
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-seachPage gap-10 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-seachPage gap-10 pt-5 sm:pb-10">
           <div>
             <form onSubmit={handleSubmit(handleSearch)}>
               <div className="grid sm:grid-cols-2 md:grid-cols-1 gap-2">

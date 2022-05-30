@@ -76,7 +76,7 @@ const Register = () => {
   return (
     <Page>
       <SEO title="Register" />
-      <div className="w-full max-w-[400px] px-5 mx-auto mt-5 pb-20">
+      <div className="w-full max-w-[400px] px-5 mx-auto mt-5 pb-10">
         <h1 className="text-4xl font-bold text-red-500 text-center mb-5">
           Register
         </h1>
