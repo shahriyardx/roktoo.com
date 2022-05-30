@@ -39,8 +39,9 @@ const ProfileLayout = ({ children }) => {
           <BiMenu />
         </div>
         <div
-          className={`fixed sm:static top-0 left-0 h-screen w-full z-30 transition-all`}
-          style={{ left: open ? "0px" : `${-300 + touchEnd}px` }}
+          className={`fixed sm:static top-0 left-0 h-screen w-full z-30 transition-all ${
+            open ? "left-0" : "-left-full"
+          }`}
         >
           <div className="w-full h-full max-w-[300px] bg-zinc-800 dark:bg-zinc-700 sm:bg-transparent">
             <div className="h-16 flex items-center justify-between px-4 bg-zinc-80 sm:hidden bg-zinc-700 dark:bg-zinc-600">
