@@ -3,7 +3,6 @@ import Container from "../../components/Layouts/Container";
 import NavLink from "../../components/NavLink";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { BiMenu } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
@@ -32,7 +31,7 @@ const Header = () => {
                 router.pathname == "/" && "underline decoration-red-500"
               }`}
             >
-              <span className="dark:text-white">Rokto</span>
+              <span className="text-white">Rokto</span>
               <span className="text-red-500">o</span>
             </div>
           </a>
