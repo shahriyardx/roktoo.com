@@ -23,7 +23,7 @@ const Header = () => {
   }, [error]);
 
   return (
-    <div className="h-16 items-center shadow-md fixed sm:static top-0 left-0 w-full flex bg-zinc-900 z-50">
+    <div className="h-16 items-center shadow-md fixed sm:static top-0 left-0 w-full flex bg-zinc-900 z-10">
       <Container className="flex items-center justify-center sm:justify-between">
         <Link href="/" passHref>
           <a>

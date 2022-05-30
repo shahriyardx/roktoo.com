@@ -43,7 +43,13 @@ const ProfileLayout = ({ children }) => {
         onTouchEnd={onTouchEnd}
       >
         <div
-          className={`fixed sm:static top-0 left-0 h-screen w-full z-50 sm:z-40 transition-all ${
+          className="fixed top-5 left-4 z-20 text-2xl text-white sm:hidden"
+          onClick={() => setOpen(true)}
+        >
+          <BiMenu />
+        </div>
+        <div
+          className={`fixed sm:static top-0 left-0 h-screen w-full z-30 transition-all ${
             open ? "left-0" : "-left-full"
           }`}
         >
