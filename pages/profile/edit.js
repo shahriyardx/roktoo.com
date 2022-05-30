@@ -4,13 +4,16 @@ import cities from "../../data/cities";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { BiLoaderAlt } from "react-icons/bi";
-import { getSession } from "next-auth/react";
 import ProfileLayout from "../../components/Layouts/ProfileLayout";
 import SEO from "../../components/SEO";
+import { useQuery } from "react-query";
 
-const EditProfile = ({ user }) => {
-  const [district, setDistrict] = useState(user.district);
-  const [area, setArea] = useState(user.area);
+const EditProfile = () => {
+  const { data: user } = useQuery("user", () =>
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/user`).then((res) => res.json())
+  );
+  const [district, setDistrict] = useState(user?.district);
+  const [area, setArea] = useState(user?.area);
   const [areas, setAreas] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +26,8 @@ const EditProfile = ({ user }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: user });
+    reset,
+  } = useForm();
 
   const handleUpdate = async (data) => {
     const { phone, ...otherInfo } = data;
@@ -75,6 +79,13 @@ const EditProfile = ({ user }) => {
     }
   }, [area]);
 
+  useEffect(() => {
+    if (!user) return;
+    reset(user);
+    setDistrict(user.district);
+    setArea(user.area);
+  }, [user, reset]);
+
   return (
     <ProfileLayout>
       <SEO title="Edit Profile" />
@@ -89,7 +100,7 @@ const EditProfile = ({ user }) => {
               name="name"
               id="name"
               placeholder="Full Name"
-              defaultValue={user.name}
+              defaultValue={user?.name}
               {...register("name", {
                 required: {
                   value: true,
@@ -234,29 +245,5 @@ const EditProfile = ({ user }) => {
   );
 };
 
+EditProfile.requireAuth = true;
 export default EditProfile;
-
-export const getServerSideProps = async ({ req, res }) => {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
-  const user = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/user`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      cookie: req.headers.cookie,
-    },
-  }).then((data) => data.json());
-
-  return {
-    props: {
-      user,
-    },
-  };
-};
