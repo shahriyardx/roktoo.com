@@ -47,7 +47,7 @@ const Requirements = () => {
           <Loading />
         ) : (
           futurePosts.length < 1 && (
-            <h1 className="text-3xl font-bold text-red-500 text-center mt-20">
+            <h1 className="text-3xl font-bold text-red-500 text-center sm:mt-10">
               No blood requirements are found
             </h1>
           )
