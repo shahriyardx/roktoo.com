@@ -29,7 +29,7 @@ const Login = () => {
   return (
     <Page>
       <SEO title="Login" />
-      <div className="w-full max-w-[400px] px-5 mx-auto mt-20">
+      <div className="w-full max-w-[400px] px-5 mx-auto mt-5">
         <h1 className="text-4xl font-bold text-red-500 text-center mb-5">
           Login
         </h1>
@@ -86,26 +86,24 @@ const Login = () => {
               </p>
             </div>
 
-            <div>
+            <div className="grid grid-cols-2 gap-2">
               <button
                 disabled={loading}
                 type="submit"
-                className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 items-center disabled:bg-green-800 disabled:cursor-not-allowed"
+                className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 justify-center items-center disabled:bg-green-800 disabled:cursor-not-allowed"
               >
                 {loading && <BiLoaderAlt className="text-xl animate-spin" />}
                 <span>Login</span>
               </button>
+
+              <Link href="/register" passHref>
+                <a className="px-10 py-3 rounded-md bg-zinc-700 text-white text-center">
+                  Register
+                </a>
+              </Link>
             </div>
           </div>
         </form>
-
-        <div className="mt-10">
-          <Link href="/register" passHref>
-            <a className="text-blue-500 font-semibold">
-              💘 New to roktoo? Register here
-            </a>
-          </Link>
-        </div>
       </div>
     </Page>
   );

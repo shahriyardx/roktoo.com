@@ -6,11 +6,44 @@ import { BiX, BiMenu } from "react-icons/bi";
 
 const ProfileLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // the required distance between touchStart and touchEnd to be detected as a swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      setOpen(false);
+    }
+
+    if (isRightSwipe) {
+      setOpen(true);
+    }
+    // add your conditional logic here
+  };
+
   return (
     <Page>
-      <Container className="grid grid-cols-1 sm:grid-cols-seachPage gap-5 mt-5">
+      <Container
+        className="grid grid-cols-1 sm:grid-cols-seachPage gap-5 mt-5 min-h-[calc(100vh-170px)]"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <div
-          className={`fixed sm:static top-0 left-0 h-screen w-full z-50 transition-all ${
+          className={`fixed sm:static top-0 left-0 h-screen w-full z-50 sm:z-40 transition-all ${
             open ? "left-0" : "-left-full"
           }`}
         >
@@ -36,18 +69,8 @@ const ProfileLayout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="pb-4 sm:pb-0">
-            <button
-              className="py-2 rounded-md flex items-center gap-2 text-lg sm:hidden dark:text-white"
-              onClick={() => setOpen(true)}
-            >
-              <BiMenu className="text-xl" />
-              <span>Open Menu</span>
-            </button>
-          </div>
-          <div>{children}</div>
-        </div>
+
+        <div>{children}</div>
       </Container>
     </Page>
   );

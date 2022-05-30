@@ -23,8 +23,8 @@ const Header = () => {
   }, [error]);
 
   return (
-    <div className="h-16 flex items-center shadow-md relative">
-      <Container className="flex items-center">
+    <div className="h-16 items-center shadow-md fixed sm:static top-0 left-0 w-full flex bg-zinc-900 z-50">
+      <Container className="flex items-center justify-center sm:justify-between">
         <Link href="/" passHref>
           <a>
             <div
@@ -38,52 +38,45 @@ const Header = () => {
           </a>
         </Link>
 
-        <div
-          className={`
-          flex sm:gap-3 ml-auto absolute sm:static top-16 left-0 flex-col 
-          sm:flex-row sm:w-auto bg-zinc-700 sm:bg-transparent text-white 
-          sm:text-black w-full z-50 ${open || "hidden sm:flex"}`}
-        >
-          <NavLink
-            href="/requirements"
-            text={
-              <p className="flex items-center gap-1">
-                <span>Need Blood</span>{" "}
-                <GoPrimitiveDot
-                  className="text-red-500 animate-pulse
+        <div className="hidden sm:flex items-center">
+          <div className="flex gap-3">
+            <NavLink
+              href="/requirements"
+              text={
+                <p className="flex items-center gap-1">
+                  <span>Need Blood</span>{" "}
+                  <GoPrimitiveDot
+                    className="text-red-500 animate-pulse
                 "
-                />{" "}
-              </p>
-            }
-          />
+                  />{" "}
+                </p>
+              }
+            />
 
-          <NavLink href="/search" text="Search" />
-          {status !== "authenticated" && (
-            <NavLink href="/register" text="Register" />
+            <NavLink href="/search" text="Search" />
+            {status !== "authenticated" && (
+              <NavLink href="/register" text="Register" />
+            )}
+
+            {status === "authenticated" && (
+              <NavLink href="/profile" text="Profile" />
+            )}
+          </div>
+
+          {status === "authenticated" ? (
+            <button
+              onClick={signOut}
+              className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-auto sm:ml-5"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link href="/login">
+              <a className="px-5 py-2 bg-green-500 text-white font-semibold rounded-full ml-auto sm:ml-5">
+                Login
+              </a>
+            </Link>
           )}
-
-          {status === "authenticated" && (
-            <NavLink href="/profile" text="Profile" />
-          )}
-        </div>
-
-        {status === "authenticated" ? (
-          <button
-            onClick={signOut}
-            className="px-5 py-2 bg-red-500 text-white font-semibold rounded-full ml-auto sm:ml-5"
-          >
-            Logout
-          </button>
-        ) : (
-          <Link href="/login">
-            <a className="px-5 py-2 bg-green-500 text-white font-semibold rounded-full ml-auto sm:ml-5">
-              Login
-            </a>
-          </Link>
-        )}
-
-        <div className="ml-3 sm:hidden" onClick={() => setOpen(!open)}>
-          <BiMenu className="text-2xl dark:text-white" />
         </div>
       </Container>
     </div>

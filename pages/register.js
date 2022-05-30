@@ -76,7 +76,7 @@ const Register = () => {
   return (
     <Page>
       <SEO title="Register" />
-      <div className="w-full max-w-[400px] px-5 mx-auto mt-20">
+      <div className="w-full max-w-[400px] px-5 mx-auto mt-5 pb-20">
         <h1 className="text-4xl font-bold text-red-500 text-center mb-5">
           Register
         </h1>
@@ -227,7 +227,7 @@ const Register = () => {
             </div>
 
             <div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id="agree"
@@ -238,7 +238,7 @@ const Register = () => {
                     },
                   })}
                 />
-                <label htmlFor="agree">
+                <label htmlFor="agree" className="text-sm sm:text-base">
                   <span>I agree to the</span>
                   <Link href="/terms" passHref>
                     <a className="text-blue-500 font-bold">
@@ -255,24 +255,23 @@ const Register = () => {
             </div>
           </div>
 
-          <div className="mt-5">
+          <div className="mt-5 grid grid-cols-2 gap-3">
             <button
               disabled={loading}
               type="submit"
-              className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 items-center disabled:bg-green-800 disabled:cursor-not-allowed"
+              className="px-10 py-3 rounded-md bg-green-500 text-white flex gap-2 justify-center items-center disabled:bg-green-800 disabled:cursor-not-allowed"
             >
               {loading && <BiLoaderAlt className="text-xl animate-spin" />}
               <span>Register</span>
             </button>
+
+            <Link href="/login" passHref>
+              <a className="px-10 py-3 rounded-md bg-zinc-700 text-white text-center">
+                Login
+              </a>
+            </Link>
           </div>
         </form>
-        <div className="mt-10">
-          <Link href="/login" passHref>
-            <a className="text-blue-500 font-semibold">
-              💘 Already have an account? Login here
-            </a>
-          </Link>
-        </div>
       </div>
     </Page>
   );
