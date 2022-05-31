@@ -1,0 +1,8 @@
+.next
+.dockerignore
+.gitignore
+node_modules
+mongodata
+Dockerfile
+README.md
+*.log
