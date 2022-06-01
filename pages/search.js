@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import Container from "../components/Layouts/Container";
 import Page from "../components/Layouts/Page";
 import cities from "../data/cities";
@@ -7,54 +6,46 @@ import { BiLoaderAlt } from "react-icons/bi";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import SEO from "../components/SEO";
+import { useSelector } from "react-redux";
 
 const Search = () => {
-  const [searching, setSearching] = useState(false);
-  const [searchResult, setSearchResult] = useState([]);
-  const [searched, setSearched] = useState(false);
   const { data: session } = useSession();
+  const donators = useSelector((state) => state.donator);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const handleSearch = async (data) => {
-    district ? setDisError("") : setDisError("Please choose district");
-
-    if (!district) return;
-    setSearched(true);
-    const query = new URLSearchParams();
-    query.append("blood", data.blood);
-    query.append("district", district);
-
-    if (area) {
-      query.append("area", area);
-    }
-    setSearching(true);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/search?${query}`
-    ).then((data) => data.json());
-    setSearchResult(response);
-    setSearching(false);
-  };
-
+  const [blood, setBlood] = useState();
   const [district, setDistrict] = useState();
   const [area, setArea] = useState();
   const [areas, setAreas] = useState([]);
-  const [disError, setDisError] = useState("");
+  const [results, setResults] = useState({ data: [], loaded: false });
+  const [error, setError] = useState(
+    "Please select blood and district to find blood"
+  );
 
   useEffect(() => {
+    if (!blood && !district) return;
+    if (!blood) {
+      return setError("Please select a blood type.");
+    }
+
     if (!district) {
-      setArea("");
-      setAreas([]);
+      return setError("Please select a district.");
     }
-    if (district) {
-      setAreas(cities[district] || []);
-      setDisError("");
+
+    setAreas(cities[district]);
+    let searchResult = donators.filter(
+      (donator) => donator.blood == blood && donator.district == district
+    );
+    if (area) {
+      searchResult = searchResult.filter((result) => result.area == area);
     }
-  }, [district]);
+    if (searchResult.length < 1) {
+      setResults({ data: [], loaded: true });
+      return setError(`No ${blood} blood donor registered in this area`);
+    }
+
+    setResults({ data: searchResult, loaded: true });
+    setError("");
+  }, [blood, district, area, donators]);
 
   return (
     <Page>
@@ -62,75 +53,58 @@ const Search = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-seachPage gap-10 pt-5 sm:pb-10">
           <div>
-            <form onSubmit={handleSubmit(handleSearch)}>
-              <div className="grid sm:grid-cols-2 md:grid-cols-1 gap-2">
-                <div className="flex flex-col">
-                  <select
-                    name="blood"
-                    id="blood"
-                    {...register("blood", {
-                      required: {
-                        value: true,
-                        message: "Please select blood group",
-                      },
-                    })}
-                  >
-                    <option value="">- Blood group -</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                  </select>
-                  <p className=" mt-1 text-sm text-red-500">
-                    {errors.blood?.message}
-                  </p>
-                </div>
-
-                <div className="flex flex-col">
-                  <select
-                    name="district"
-                    id="district"
-                    onChange={(e) => setDistrict(e.target.value)}
-                  >
-                    <option value="">- Select District -</option>
-                    {Object.keys(cities)
-                      .sort()
-                      .map((city) => {
-                        return (
-                          <option key={city} value={city}>
-                            {city}
-                          </option>
-                        );
-                      })}
-                  </select>
-                  <p className=" mt-1 text-sm text-red-500">{disError}</p>
-                </div>
+            <div className="grid sm:grid-cols-2 md:grid-cols-1 gap-2">
+              <div className="flex flex-col">
                 <select
-                  name="area"
-                  id="area"
-                  onChange={(e) => setArea(e.target.value)}
+                  name="blood"
+                  id="blood"
+                  onChange={(e) => setBlood(e.target.value)}
                 >
-                  <option value="">- Select Area -</option>
-                  {areas.map((area) => {
-                    return (
-                      <option key={area} value={area}>
-                        {area}
-                      </option>
-                    );
-                  })}
+                  <option value="">- Blood group -</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
                 </select>
-                <button className="py-3 bg-red-500 font-semibold text-white flex justify-center items-center gap-2 mt-1">
-                  {searching && (
-                    <BiLoaderAlt className="text-2xl animate-spin" />
-                  )}
-                  <span>Search</span>
-                </button>
               </div>
-            </form>
+
+              <div className="flex flex-col">
+                <select
+                  name="district"
+                  id="district"
+                  onChange={(e) => setDistrict(e.target.value)}
+                >
+                  <option defaultValue="">- Select District -</option>
+                  {Object.keys(cities)
+                    .sort()
+                    .map((city) => {
+                      return (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <select
+                name="area"
+                id="area"
+                onChange={(e) => setArea(e.target.value)}
+              >
+                <option defaultValue="">- Select Area -</option>
+                {areas.map((area) => {
+                  return (
+                    <option key={area} value={area}>
+                      {area}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
 
             {!session && (
               <div className="p-4 bg-red-500 mt-5 rounded-md flex-col gap-5 hidden md:flex">
@@ -148,22 +122,9 @@ const Search = () => {
           </div>
 
           <div className="overflow-x-auto">
-            {!searching && (
-              <>
-                <p className="text-lg dark:text-zinc-300">
-                  {!searched &&
-                    !searchResult.length &&
-                    "Please select blood group and district to search"}
-                </p>
-
-                <p className="text-lg dark:text-zinc-300">
-                  {searched && !searchResult.length && "No blood donor found."}
-                </p>
-              </>
-            )}
-
+            {error && <p className="text-xl font-bold text-red-500">{error}</p>}
             <div>
-              {searchResult.length > 0 && (
+              {results.data.length > 0 && (
                 <table className="text-left w-full">
                   <thead>
                     <tr>
@@ -175,7 +136,7 @@ const Search = () => {
                   </thead>
 
                   <tbody>
-                    {searchResult.map((donator, index) => {
+                    {results.data.map((donator, index) => {
                       return (
                         <tr key={index}>
                           <td className="px-5 py-3 whitespace-nowrap dark:text-zinc-200">

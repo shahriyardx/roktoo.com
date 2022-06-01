@@ -5,7 +5,7 @@ export const donatorSlice = createSlice({
   initialState: [],
   reducers: {
     setDonators: (state, action) => {
-      state = action.payload;
+      return (state = action.payload);
     },
   },
 });
