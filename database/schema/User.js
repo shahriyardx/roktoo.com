@@ -41,7 +41,6 @@ const UserSchemma = joi.object({
     .pattern(/^(?:\+88|88)?(01[3-9]\d{8})$/)
     .required(),
   blood: joi.string().required(),
-  address: joi.string().optional(),
   name: joi.string().required(),
   password: joi.string().required(),
   district: joi.string().required(),
@@ -54,7 +53,6 @@ const UserUpdateSchema = joi.object({
     .pattern(/^(?:\+88|88)?(01[3-9]\d{8})$/)
     .required(),
   blood: joi.string().required(),
-  address: joi.string().optional(),
   name: joi.string().required(),
   district: joi.string().required(),
   area: joi.string().required(),
